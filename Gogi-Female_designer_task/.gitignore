@@ -1,6 +1,6 @@
 .idea/**/*
 .vscode/**/*
-.DC_Store/**/*
+.DS_Store/**/*
 
 node_modules/**/*
 
