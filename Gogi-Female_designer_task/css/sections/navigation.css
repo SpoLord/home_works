@@ -1,0 +1,24 @@
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.company {
+}
+
+.navigation__menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 74px;
+}
+
+.navigation__link {
+  text-decoration: none;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}

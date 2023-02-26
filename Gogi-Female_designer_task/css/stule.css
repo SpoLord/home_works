@@ -1,7 +1,7 @@
-@import url(/css/sections/common.css);
+@import url(./common.css);
 
-@import url(/css/sections/navigation.css);
-@import url(/css/sections/hero.css);
-@import url(/css/sections/work.css);
-@import url(/css/sections/artworks.css);
-@import url(/css/sections/feedback-form.css);
+@import url(./sections/navigation.css);
+@import url(./sections/hero.css);
+@import url(./sections/work.css);
+@import url(./sections/artworks.css);
+@import url(./sections/feedback-form.css);

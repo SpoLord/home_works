@@ -1,0 +1,24 @@
+:root {
+  --white: #ffffff;
+  --gray-drk: #979ea6;
+  --gray-lght: #d9d9d999;
+  --bg-color: #04052b;
+  --btn-color: #8346a0;
+  --navi-bg: #883399;
+  --feedbk-bg: #2f2f8a99;
+}
+
+* {
+  font-family: "Inter";
+  font-weight: 400;
+  color: var(--white);
+}
+
+.bg-color {
+  background-color: var(--bg-color);
+}
+
+.conteiner {
+  width: 1200px;
+  margin: 0 auto;
+}
