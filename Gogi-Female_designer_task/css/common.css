@@ -16,9 +16,13 @@
 
 .bg-color {
   background-color: var(--bg-color);
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .conteiner {
-  width: 1200px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 34px;
+  box-sizing: border-box;
 }

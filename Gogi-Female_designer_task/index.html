@@ -11,12 +11,12 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Libre+Caslon+Display&family=Poppins:wght@400;500;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./css/stule.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Designer home</title>
   </head>
   <body class="bg-color">
-    <header class="navigation conteiner">
-      <figure class="company">
+    <header class="navigation-wraper conteiner">
+      <a href="#" class="company">
         <svg
           width="60"
           height="60"
@@ -46,54 +46,61 @@
             />
           </defs>
         </svg>
-      </figure>
-      <menu class="navigation__menu">
-        <li class="navigation__item">
-          <a href="" class="navigation__link">Home</a>
-        </li>
-        <li class="navigation__item">
-          <a href="" class="navigation__link">Work</a>
-        </li>
-        <li class="navigation__item">
-          <a href="" class="navigation__link">Contact</a>
-        </li>
-      </menu>
+      </a>
+      <details class="navigation" open>
+        <summary class="burger">
+          <div class="burger__line"></div>
+          <div class="burger__line"></div>
+          <div class="burger__line"></div>
+        </summary>
+        <menu class="navigation-menu">
+          <li class="navigation-menu__item">
+            <a href="#" class="navigation__link">Home</a>
+          </li>
+          <li class="navigation-menu__item">
+            <a href="#" class="navigation__link">Work</a>
+          </li>
+          <li class="navigation-menu__item">
+            <a href="#" class="navigation__link">Contact</a>
+          </li>
+        </menu>
+      </details>
     </header>
     <section class="hero conteiner">
       <div class="hero__content">
         <h1 class="hero__title">Hi, I am Gogi Female</h1>
-        <h3 class="hero__content">UX Designer</h3>
-        <h3 class="hero__content">Based in Gogiland</h3>
+        <h3 class="hero__subtitule">UX Designer</h3>
+        <h3 class="hero__subtitule">Based in Gogiland</h3>
       </div>
       <div class="hero__buttons">
-        <a href="" class="hero__btn">Hire Me</a>
-        <a href="" class="hero__btn">Download СV</a>
+        <a href="#" class="hero__action">Hire Me</a>
+        <a href="#" class="hero__action">Download СV</a>
       </div>
     </section>
     <section class="work conteiner">
       <h2 class="section-title">Work</h2>
       <div class="works-list">
         <article class="work-card">
-          <figure class="work-card__img">
+          <picture class="work-card__img">
             <img src="./img/Mock-ups.svg" alt="" />
-          </figure>
-          <div class="work-card__btm">
+          </picture>
+          <div class="work-card__btn">
             <p class="work-card__title">Mock-ups</p>
           </div>
         </article>
         <article class="work-card">
-          <figure class="work-card__img">
+          <picture class="work-card__img">
             <img src="./img/android-apps.svg" alt="" />
-          </figure>
-          <div class="work-card__btm">
+          </picture>
+          <div class="work-card__btn">
             <p class="work-card__title">Android Apps</p>
           </div>
         </article>
         <article class="work-card">
-          <figure class="work-card__img">
+          <picture class="work-card__img">
             <img src="./img/Logo-Designs.svg" alt="" />
-          </figure>
-          <div class="work-card__btm main-work">
+          </picture>
+          <div class="work-card__btn main-work">
             <p class="work-card__title">Logo Designs</p>
           </div>
         </article>
@@ -101,41 +108,41 @@
     </section>
     <section class="artworks conteiner">
       <h2 class="section-title">Artworks</h2>
-      <div class="artwroks__list">
+      <div class="artwroks-list">
         <article class="artwork__card">
-          <figure class="artworks__img">
+          <picture class="artworks__img">
             <img src="./img/our-last-night.png" alt="" />
-          </figure>
+          </picture>
           <p class="artwork__title">Oil paintings</p>
         </article>
         <article class="artwork__card">
-          <figure class="artworks__img">
+          <picture class="artworks__img">
             <img src="./img/mirror-man.png" alt="" />
-          </figure>
+          </picture>
           <p class="artwork__title">Museums</p>
         </article>
         <article class="artwork__card">
-          <figure class="artworks__img">
+          <picture class="artworks__img">
             <img src="./img/red-rect.png" alt="" />
-          </figure>
+          </picture>
           <p class="artwork__title">Wall arts</p>
         </article>
         <article class="artwork__card">
-          <figure class="artworks__img">
+          <picture class="artworks__img">
             <img src="./img/our-last-night.png" alt="" />
-          </figure>
+          </picture>
           <p class="artwork__title">Oil paintings</p>
         </article>
         <article class="artwork__card">
-          <figure class="artworks__img">
+          <picture class="artworks__img">
             <img src="./img/mirror-man.png" alt="" />
-          </figure>
+          </picture>
           <p class="artwork__title">Museums</p>
         </article>
         <article class="artwork__card">
-          <figure class="artworks__img">
+          <picture class="artworks__img">
             <img src="./img/red-rect.png" alt="" />
-          </figure>
+          </picture>
           <p class="artwork__title">Wall arts</p>
         </article>
       </div>
