@@ -71,7 +71,7 @@ function lenghtCounter() {
  *
  * Написать функцию-счётчик count.
  *
- * Функцию обладает будет двумя параметрами:
+ * Функция обладает двумя параметрами:
  * - Первый — число, с которого необходимо начать счёт;
  * - Второй — число, которым необходимо закончить счёт.
  *
@@ -90,6 +90,25 @@ function lenghtCounter() {
  * «✅ Отсчёт завершен.».
  *
  */
+
+// ввод двух чисел: стартове, кінцеве > перевірка валідності чисел через if більше/менше > якщо все ок, виводити числа через while ++
+function countChar() {
+  let startChar = prompt("Giwe me a start char")
+  let finishChar = prompt("Giwe me a finish char")
+
+  if (startChar > finishChar) {
+    alert("⛔️ Ошибка! Счёт невозможен.")
+  } else if (startChar === finishChar) {
+    alert("Нечего считать.")
+  } else {
+    alert("🏁 Отсчёт начат.")
+    while (startChar <= finishChar) {
+      console.log(startChar)
+      startChar++
+    }
+    alert("✅ Отсчёт завершен.")
+  }
+}
 
 /**
  * Задание 5.
@@ -150,26 +169,26 @@ function lenghtCounter() {
  * - На техническом языке подробно объяснить механизм решения.
  */
 
-while (confirm("Do you want to do something?")) {
-  switch (prompt("1 for index; 2 for length; 3 for Hangman")) {
-    case "1":
-      indexMatch()
-      break
-    case "2":
-      isLenghtOK()
-      break
-    case "3":
-      lenghtCounter()
-      break
-    case "4":
-      break
-    case "5":
-      break
-    case "6":
-      break
-    case "7":
-      break
-    case "8":
-      break
-  }
-}
+// while (confirm("Do you want to do something?")) {
+//   switch (prompt("1 for index; 2 for length; 3 for Hangman")) {
+//     case "1":
+//       indexMatch()
+//       break
+//     case "2":
+//       isLenghtOK()
+//       break
+//     case "3":
+//       lenghtCounter()
+//       break
+//     case "4":
+//       break
+//     case "5":
+//       break
+//     case "6":
+//       break
+//     case "7":
+//       break
+//     case "8":
+//       break
+//   }
+// }
