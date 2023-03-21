@@ -8,21 +8,14 @@
 // Return value
 // true або false, залежно від того є буква в слові чи ні.
 
-function indexMatch() {
-  const word = prompt("Give me a word")
-  const index = parseInt(prompt("Give me an expected index"))
-  const char = prompt("Give me a char")
+function indexMatch(word, index, char) {
+  word = prompt("Give me a word")
+  index = parseInt(prompt("Give me an expected index"))
+  char = prompt("Give me a char")
 
-  let value = ""
+  const value = word.indexOf(char) === index
 
-  word.indexOf(char)
-  if (word.indexOf(char) === index) {
-    value = "true"
-  } else {
-    value = "false"
-  }
-
-  alert(value)
+  return value
 }
 
 //  TASK-02 done
@@ -34,19 +27,13 @@ function indexMatch() {
 // Return value
 // true або false
 
-function isLenghtOK() {
-  const str = prompt("Give me a string")
-  const expectedLength = parseInt(prompt("Give me an expected length"))
+function isLenghtOK(str, expectedLength) {
+  str = prompt("Give me a string")
+  expectedLength = parseInt(prompt("Give me an expected length"))
 
-  let value = ""
+  const value = expectedLength === str.length
 
-  if (expectedLength === str.length) {
-    value = "true"
-  } else {
-    value = "false"
-  }
-
-  alert(value)
+  return value
 }
 
 /**
