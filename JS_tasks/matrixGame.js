@@ -13,12 +13,6 @@ function createMatrix(size = 5, defaultValue = "R") {
     return value
   }
 
-  /**
-   * метод drawColumn заміняє всі значення у вказаному стовпчику на передане.
-   * @param {number} y – індекс стовбчика
-   * @param {any} char – передане значення
-   * @returns
-   */
   function drawColumn(y, char) {
     value = value[y].splice(y, 1, char)
     return value

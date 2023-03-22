@@ -9,13 +9,7 @@
 // true або false, залежно від того є буква в слові чи ні.
 
 function indexMatch(word, index, char) {
-  word = prompt("Give me a word")
-  index = parseInt(prompt("Give me an expected index"))
-  char = prompt("Give me a char")
-
-  const value = word.indexOf(char) === index
-
-  return value
+  return word.indexOf(char) === index
 }
 
 //  TASK-02 done
@@ -28,12 +22,7 @@ function indexMatch(word, index, char) {
 // true або false
 
 function isLenghtOK(str, expectedLength) {
-  str = prompt("Give me a string")
-  expectedLength = parseInt(prompt("Give me an expected length"))
-
-  const value = expectedLength === str.length
-
-  return value
+  return expectedLength === str.length
 }
 
 /**
@@ -42,15 +31,19 @@ function isLenghtOK(str, expectedLength) {
  * Функцию, которая определяет количество переданных аргументов и возвращает их количество.
  */
 
+// це, щоб ти розумів піздець того, шо відбувалось.
+// //------------------------------------------------
+// function lenghtCounter(strs = []) {
+//   while (confirm("Do you want to add an arg?")) {
+//     strs.push(prompt("add an arg"))
+//   }
+//   let value = strs.length
+//   console.log(strs)
+//   console.log(value)
+// }
+
 function lenghtCounter() {
-  let strs = []
-  //мені не подобається, як працює цей вайл, але я їбав придумувати нормальне рішення.
-  while (confirm("Do you want to add an arg?")) {
-    strs.push(prompt("add an arg"))
-  }
-  let value = strs.length
-  console.log(strs)
-  console.log(value)
+  return arguments.length
 }
 
 /**
@@ -79,21 +72,18 @@ function lenghtCounter() {
  */
 
 // ввод двух чисел: стартове, кінцеве > перевірка валідності чисел через if більше/менше > якщо все ок, виводити числа через while ++
-function countChar() {
-  let startChar = prompt("Giwe me a start char")
-  let finishChar = prompt("Giwe me a finish char")
-
+function countChar(startChar, finishChar) {
   if (startChar > finishChar) {
-    alert("⛔️ Ошибка! Счёт невозможен.")
+    console.log("⛔️ Ошибка! Счёт невозможен.")
   } else if (startChar === finishChar) {
-    alert("Нечего считать.")
+    console.log("Нечего считать.")
   } else {
-    alert("🏁 Отсчёт начат.")
+    console.log("🏁 Отсчёт начат.")
     while (startChar <= finishChar) {
       console.log(startChar)
       startChar++
     }
-    alert("✅ Отсчёт завершен.")
+    console.log("✅ Отсчёт завершен.")
   }
 }
 
@@ -103,11 +93,39 @@ function countChar() {
  * Написать улучшенную функцию-счётчик countAdvanced.
  *
  * Функцию-счётчик из предыдущего задания расширить дополнительным функционалом:
- * - Добавить ей третий параметр, и выводить в консоль только числа, кратные значению из этого
+ * + Добавить ей третий параметр, и выводить в консоль только числа, кратные значению из этого
  *  параметра;
- * - Генерировать ошибку (throw new Error), если функция была вызвана не с тремя аргументами;
- * - Генерировать ошибку, если любой из аргументов не является допустимым числом.
+ * + Генерировать ошибку (throw new Error), если функция была вызвана не с тремя аргументами;
+ * + Генерировать ошибку, если любой из аргументов не является допустимым числом.
  */
+
+function updCountChar(startChar, finishChar, divider) {
+  if (arguments.length < 3) {
+    console.log("Не вистачає аргументів")
+  } else if (
+    // Хотів зробити перевірку окремою функцією + for(){}, але не знайшов спосіб перебрати аргументи функції
+    Number.isInteger(startChar) !== true ||
+    Number.isInteger(finishChar) !== true ||
+    Number.isInteger(divider) !== true
+  ) {
+    console.log("⛔️ Помилка! Вказані невірна аргументи")
+  } else if (startChar > finishChar) {
+    console.log("⛔️ Помилка! Рахунок неможливий.")
+  } else if (startChar === finishChar) {
+    console.log("Нічого рахувати.")
+  } else {
+    console.log("🏁 Почато рахунок.")
+    while (startChar <= finishChar) {
+      if (startChar % divider === 0) {
+        console.log(startChar)
+        startChar++
+      } else {
+        startChar++
+      }
+    }
+    console.log("✅ Рахунок закінчено.")
+  }
+}
 
 /**
  * Задание 6.
@@ -118,24 +136,81 @@ function countChar() {
  * Однако каждый из них обязательно должен быть числом.
  *
  * Генерировать ошибку, если:
- * - Хоть один из параметров не является допустимым числом (в ошибке указать порядковый номер аргумента);
+ * + Хоть один из параметров не является допустимым числом (в ошибке указать порядковый номер аргумента);
  * - Если функция была вызвана менее, чем с двумя аргументами.
  *
  * Условия:
  * - Оператором «...» пользоваться запрещено.
  */
-
+function sumOfParameters() {
+  if (arguments.length >= 2) {
+    let value = 0
+    for (let i in sumOfParameters.arguments) {
+      if (Number.isInteger(arguments[i]) === false) {
+        console.log(`Аргумент ${arguments[i]} за індексом ${i} не ціле число`)
+        value = 0
+        break
+      } else {
+        value += arguments[i]
+      }
+    }
+    if (value === 0) {
+    } else {
+      console.log(value)
+      return value
+    }
+  } else {
+    console.log("Введено лише один аргумент. Треба >=2")
+  }
+}
 /**
- * Задание 7.
+ * -- Задание 7.
  *
  * Написать функцию-счётчик increment.
  *
- * Первый вызов функции должен вернуть 0.
- * Каждый новый вызов функции должен возвращать число, на 1 больше, чем предыдущее.
+ * + Первый вызов функции должен вернуть 0.
+ * + Каждый новый вызов функции должен возвращать число, на 1 больше, чем предыдущее.
  *
  * Продвинутая сложность:
  * - На техническом языке подробно объяснить механизм решения.
  */
+
+// Вкрадено, але незрозуміло: https://learn.javascript.ru/function-object
+
+function makeIncrement() {
+  function increment() {
+    return increment.count++
+  }
+
+  increment.count = 0
+  return increment
+}
+
+let increment = makeIncrement()
+
+console.log(increment())
+console.log(increment())
+console.log(increment())
+console.log(increment())
+
+// Теоретично, я маю зробити щось таке, але не розумію, як ця хуйня працює
+// var Person = (function () {
+//   var Person = function (name) {
+//       this.name = name;
+//   }
+//   Person.greet = function () {
+//       console.log("Hello!");
+//   }
+//   Person.prototype = {
+//       greet: function () {
+//           console.log('Hello, my name is ' + this.name);
+//       }
+//   };
+//   return Person;
+// })();
+// var bob = new Person("Bob");
+// Person.greet(); // logs "Hello!"
+// bob.greet(); // logs "Hello, my name is Bob
 
 /**
  * Задание 8.
