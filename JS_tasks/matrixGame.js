@@ -3,35 +3,73 @@
  * drawRow(y, char) - метод - заміняє всі значення у вказаному рядку на передане.
  * drawColumn(x, char) - метод - заміняє всі значення у вказаному стовпчику на передане.
  * reset() - метод - повертає всі значення матриці за замовченням.
- * drawCharSet(x,y,charSet,direction) - метод - те саме шо і drawChar, але charSet може бути довжиною більше 1-го символу. починає малювати з вказаної позиції і продовжує допоки не скінчиться рядок або стовпчик або переданий charSet. аргемент direction регулює по вертикалі чи горизонталі буде продовжуватись малювання. якшо direction не переданий, то малювання відпувається по горизонталі.
+ * drawCharSet(x,y,charSet,direction)
+ * - метод - те саме шо і drawChar charSet може бути довжиною більше 1-го символу.
+ * починає малювати з вказаної позиції і продовжує допоки не скінчиться рядок або стовпчик або переданий charSet.
+ * аргумент direction регулює по вертикалі чи горизонталі буде продовжуватись малювання.
+ * якшо direction не переданий, то малювання відпувається по горизонталі.
  */
-function createMatrix(size = 5, defaultValue = "R") {
-  let value = new Array(size).fill(new Array(size).fill(defaultValue))
+
+function matrix() {
+  function createMatrix(size = 5, defaultValue = "R") {
+    for (let i = 0; i < size; i++) {
+      let row = []
+      for (let i = 0; i < size; i++) {
+        row.push(defaultValue)
+      }
+      value.push(row)
+    }
+  }
 
   function drawChar(x, y, char) {
     value[x][y] = char
-    return value
+  }
+
+  function drawRow(x, char) {
+    for (i in value) {
+      value[x][i] = char
+    }
   }
 
   function drawColumn(y, char) {
-    value = value[y].splice(y, 1, char)
-    return value
+    for (i in value) {
+      value[i][y] = char
+    }
   }
+
+  function reset() {
+    value.splice(0, value.length)
+    createMatrix()
+  }
+
+  function drawCharSet(x, y, char, direction = "x") {
+    if (direction === "y") {
+      for (let i = 0; i < char.length && i + x < value.length; i++) {
+        value[i + x][y] = char[i]
+      }
+    } else {
+      for (let i = 0; i < char.length && i + y < value.length; i++) {
+        value[x][i + y] = char[i]
+      }
+    }
+  }
+
+  let value = []
+
+  createMatrix()
 
   return {
     value,
     drawChar,
-    //drawRow,
+    drawRow,
     drawColumn,
-    //reset,
-    //drawCharSet,
+    reset,
+    drawCharSet,
   }
 }
 
-const myMatrix = createMatrix()
+const myMatrix = matrix()
 
-myMatrix.drawChar(2, 2, "T")
+myMatrix.drawCharSet(2, 0, " хуй ")
 
 console.log(myMatrix.value)
-
-console.log(myMatrix.value[0][0])

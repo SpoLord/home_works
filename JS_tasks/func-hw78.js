@@ -74,9 +74,9 @@ function lenghtCounter() {
 // ввод двух чисел: стартове, кінцеве > перевірка валідності чисел через if більше/менше > якщо все ок, виводити числа через while ++
 function countChar(startChar, finishChar) {
   if (startChar > finishChar) {
-    console.log("⛔️ Ошибка! Счёт невозможен.")
+    console.error("⛔️ Ошибка! Счёт невозможен.")
   } else if (startChar === finishChar) {
-    console.log("Нечего считать.")
+    console.error("Нечего считать.")
   } else {
     console.log("🏁 Отсчёт начат.")
     while (startChar <= finishChar) {
@@ -101,18 +101,18 @@ function countChar(startChar, finishChar) {
 
 function updCountChar(startChar, finishChar, divider) {
   if (arguments.length < 3) {
-    console.log("Не вистачає аргументів")
+    console.error("Не вистачає аргументів")
   } else if (
     // Хотів зробити перевірку окремою функцією + for(){}, але не знайшов спосіб перебрати аргументи функції
-    Number.isInteger(startChar) !== true ||
-    Number.isInteger(finishChar) !== true ||
-    Number.isInteger(divider) !== true
+    !Number.isInteger(startChar) ||
+    !Number.isInteger(finishChar) ||
+    !Number.isInteger(divider)
   ) {
-    console.log("⛔️ Помилка! Вказані невірна аргументи")
+    console.error("⛔️ Помилка! Вказані невірна аргументи")
   } else if (startChar > finishChar) {
-    console.log("⛔️ Помилка! Рахунок неможливий.")
+    console.error("⛔️ Помилка! Рахунок неможливий.")
   } else if (startChar === finishChar) {
-    console.log("Нічого рахувати.")
+    console.error("Нічого рахувати.")
   } else {
     console.log("🏁 Почато рахунок.")
     while (startChar <= finishChar) {
@@ -143,10 +143,13 @@ function updCountChar(startChar, finishChar, divider) {
  * - Оператором «...» пользоваться запрещено.
  */
 function sumOfParameters() {
-  if (arguments.length >= 2) {
+  if (arguments.length < 2) {
+    console.error("Введено лише один аргумент. Треба >=2")
+    return null
+  } else {
     let value = 0
-    for (let i in sumOfParameters.arguments) {
-      if (Number.isInteger(arguments[i]) === false) {
+    for (let i in arguments) {
+      if (!Number.isInteger(arguments[i])) {
         console.log(`Аргумент ${arguments[i]} за індексом ${i} не ціле число`)
         value = 0
         break
@@ -159,10 +162,9 @@ function sumOfParameters() {
       console.log(value)
       return value
     }
-  } else {
-    console.log("Введено лише один аргумент. Треба >=2")
   }
 }
+
 /**
  * -- Задание 7.
  *
@@ -176,41 +178,21 @@ function sumOfParameters() {
  */
 
 // Вкрадено, але незрозуміло: https://learn.javascript.ru/function-object
+// function makeIncrement() {
+//   function increment() {
+//     return increment.count++
+//   }
+//   increment.count = 0
+//   return increment
+// }
+// let increment = makeIncrement()
 
-function makeIncrement() {
-  function increment() {
-    return increment.count++
+function counter() {
+  let count = 0
+  return function () {
+    return ++count
   }
-
-  increment.count = 0
-  return increment
 }
-
-let increment = makeIncrement()
-
-console.log(increment())
-console.log(increment())
-console.log(increment())
-console.log(increment())
-
-// Теоретично, я маю зробити щось таке, але не розумію, як ця хуйня працює
-// var Person = (function () {
-//   var Person = function (name) {
-//       this.name = name;
-//   }
-//   Person.greet = function () {
-//       console.log("Hello!");
-//   }
-//   Person.prototype = {
-//       greet: function () {
-//           console.log('Hello, my name is ' + this.name);
-//       }
-//   };
-//   return Person;
-// })();
-// var bob = new Person("Bob");
-// Person.greet(); // logs "Hello!"
-// bob.greet(); // logs "Hello, my name is Bob
 
 /**
  * Задание 8.
