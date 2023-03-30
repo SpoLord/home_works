@@ -1,60 +1,67 @@
-function createMovie(title, schedule, ticketPrice) {
-  const movie = {
+// function createMovie(title, schedule, ticketPrice) {
+//   const movie = {
+//     title: title,
+//     schedule: schedule,
+//     price: ticketPrice,
+
+//     /**
+//      *
+//      * @param {number} discount – biger then 0 and less then 1 for calculation new prices
+//      * @returns discounted price
+//      */
+//     makeSale: function (discount) {
+//       if (discount <= 0 || discount >= 1) {
+//         return null
+//       }
+//       this.price *= discount
+//     },
+//   }
+
+//   return movie
+// }
+// ------------- simplifyed ------------- //
+
+function createMovie(title, schedule, ticketPrice, seets = 32) {
+  const moovie = {
     title: title,
     schedule: schedule,
     price: ticketPrice,
+    seets,
 
     /**
-     *
-     * @param {number} discount – biger then 0 and less then 1 for calculation new prices
-     * @returns discounted price
+     * @param {number} discount - number bigger then 0 and less then 1 for calculateing new prices
      */
     makeSale: function (discount) {
       if (discount <= 0 || discount >= 1) {
+        console.error("Wrong argument type. Should be > 0 and < 1")
         return null
       }
-      this.price *= discount
+
+      this.price = this.price * discount
     },
   }
 
-  return movie
+  return moovie
 }
 
-// ------------- simplifyed ------------- //
-
-function createMovie(title, schedule, ticketPrice, seats = 32) {
-  /**
-   * @param {number} discount – biger then 0 and less then 1 for calculation new prices
-   * @returns discounted price
-   */
-  function makeSale(discount) {
-    if (discount <= 0 || discount >= 1) {
-      return null
-    }
-    this.price *= discount
-  }
-
-  return {
-    title,
-    schedule,
-    price: ticketPrice,
-    makeSale,
-    seats,
-  }
-}
-
-// TASK-2
-
-function cinema(name, adress, films, defoultFilmStock = []) {
+function cinema(name, adress, defoultFilmStock = []) {
   const summAllTickets = function () {
     let sum = 0
 
     for (let film of this.filmStock) {
       sum += film.seats * film.price
     }
+
+    return sum
   }
-  const releaseFilm = function (filmRelease) {
-    this.filmRelease = filmRelease
+
+  const releaseFilm = function () {
+    const today = new Date()
+
+    if (today.getDay() === today.getDay()) {
+      const randomIndex = Math.floor(Math.random() * this.filmStock.length - 1)
+      this.filmRelease = this.filmStock[randomIndex]
+    }
   }
 
   return {
@@ -62,103 +69,136 @@ function cinema(name, adress, films, defoultFilmStock = []) {
     adress,
     filmStock: defoultFilmStock,
     filmRelease: null,
+
+    summAllTickets,
+    releaseFilm,
   }
 }
 
-// TASK-01
-// Написати функцію without, котра повертає новий обь'єкт без вказаних значень.
+const imaxFilmStore = [
+  createMovie("Boogi man", "", 30, 100),
+  createMovie("Vechoru blyz Dykanky", "", 50, 400),
+  createMovie("avangers", "", 10, 1000),
+  createMovie("green mile", "nonstop", 20, 200),
+]
+
+// const imax = cinema("IMAX", "in the middle of nowhere", imaxFilmStore)
+// imax.releaseFilm()
+
+// console.log(imax)
+
+// const allCosts = imax.summAllTickets()
+// console.log(allCosts)
+
+/**
+ * також додайте метод getID()
+ * щоб сгенерувати ID потрібно скласти разом в одну строку:
+ * - першу букву імені у нижньому регістрі
+ * - останню букву імені у верхньому регістрі
+ * - дату створення у мілісекундах поділену на кількість символів у расі та імені
+ */
+
+/**
+ * @constructor Creature
+ * @param {string} name
+ * @param {string} race
+ * @param {number} subscrition - from 0 to 3. Describes the level of access to the information.
+ * @param {date} dateCreated
+ */
+function Creature(name, race, subscrition, dateCreated) {
+  this.name = name
+  this.race = race
+  this.subscrition = subscrition
+  this.dateCreated = dateCreated
+
+  this.getID = function () {
+    const firstChar = this.name[0].toLowerCase()
+    const lastChar = this.name[-1].toUpperCase()
+    const millisrconds = this.dateCreated.getTime()
+
+    this.ID =
+      firstChar +
+      lastChar +
+      millisrconds / (this.name.length + this.race.length)
+
+    return this.ID
+  }
+}
+
+/**
+ * TASK-01
+ *
+ * Написати свою невеличку реалізацію чату за допомогою функцій, обʼєктів та простого використання масивів.
+ *
+ * Обʼєкт чату повинен мати:
+ * - двох адресатів, що представлені типовими обʼєктами користувачів
+ * - історію повідомлень, що представлені типовими обʼєктами повідомлень
+ * - можливість додати в історію нове повідомлення.
+ * - можливість очистити історію.
+ *
+ * Обʼєкт користувача повинен мати:
+ * - нікнейм
+ * - метод для створення чату з іншим користувачем
+ * - метод для відправки повідомлення
+ *
+ * Обʼєкт повідомлення повинен мати:
+ * - текст
+ * - відправник
+ * - отримувач
+ */
+
+function message(text, from, to) {
+  this.text = text
+  this.from = from
+  this.to = to
+}
+
+function createUser(nickname) {
+  this.nickname = nickname
+  this.myChats = []
+  this.startChatting = function (toUser) {
+    const newChat = createChat(this, toUser)
+    this.myChats.push(this.newChat)
+    console.log(`Chat with ${toUser.nickname} get started`)
+  }
+  this.sendMessage = function (msgText, to) {
+    for (let chat in this.myChats) {
+      if (chat.from === this && chat.to === to) {
+        const newMessage = createMessage(msgText, from, to)
+
+        chat.addMessage.push(newMessage)
+      }
+    }
+    console.log(`Message ${msg.from.nickname} to ${msg.to.nickname} sended`)
+  }
+}
+
+function Chat(from, to) {
+  this.from = from
+  this.to = to
+  this.history = []
+  this.addMessage = function (msg) {
+    this.history.push(msg)
+  }
+  this.removeHistory = function () {
+    this.history = []
+  }
+}
+
+// TASK-02
+// Написати функцію without, котра повертає новий об'єкт без вказаних значень.
 
 // Arguments:
-// object - будь-який обь'єкт
+// object - будь-який об'єкт
 // propertyName - назва властивості для видалення
 // Return value
-// Jбʼєкт, у якого вказана властивість має значення null.
+// Обʼєкт, у якого вказана властивість має значення null.
 
-// Код для перевірки:
-// const data = { login: 'gogi', password: 'GloryOfUkraine', address: 'Kiev' }
-// console.log(without(data, 'address',)) // { login: 'gogi', password: 'GloryOfUkraine', address: null}
+function without(object, propertyName) {
+  object[propertyName] = null
 
-// TASK-02
-// Написати функцію profileMagazine, яка повертає обʼєкт інтернет-магазину з додатковими методами по роботі з ним.
+  return object
+}
 
-// Arguments:
-// label - назва магазину
-// schedule - розклад роботи
-// products - масив продуктів, наявних на складі
-// Return value
-// Обʼєкт інтернет магазину, у якого наявні одноїменні аргументам властивості, а також 2 методи - makeBlackFriday, verifySore
-
-// метод makeBlackFriday
-// Перебрати увесь масив товарів, для кожного товару вирахувати нову ціну, просто перемноживши стару ціну на розмір знижки.
-
-// Arguments:
-// discount - розмір знижки числом від 0 до 1
-// Return value
-// Відсутнє
-
-// метод verifySore
-// Метод має "пробігати" по усім товарам магазину, та для кожного звіряти його кількість з таким самим товаром на складі. Якщо кількість товару у магазині не збігається - переназначити її таку ж як на складі.
-
-// Arguments:
-// store - массив товарів на складі
-// Return value
-// Строка зі списком назв товарів кількість яких не зпівпала з наявністю у магазині.
-
-// TASK-01
-// Доповнити функціонал 2-ї задачі з минулої домашньої роботи. До функції profileMagazine, яка повертає обʼєкт інтернет-магазину з додатковими методами по роботі з ним додати наступні параметри та методи.
-
-// Arguments:
-// description - опис про магазин
-// Return value
-// Обʼєкт інтернет магазину, у якого наявні одноіменні аргументам властивості, а також 3 методи - makeBlackFriday, verifySore, ellipsisText, censorshipCheck
-
-// метод ellipsisText
-// Перевіряє максимальну довжину рядка, та за умови якщо рядок перевищує максимульну кількість символів - обрізає рядок та додає "..."
-
-// Arguments:
-// text - текст для перевірки
-// maxLength - розмір максимальної довжини рядка в числовому значенні
-// Return value
-// Якщо максимальна кількість символів не перевищена - рядок без змін. Якщо максимальна кількість символів перевищена - рядок з "..." замість зайвих символів.
-
-// метод censorshipCheck
-// Перевіряє рядок(рекламу магазину) на цензуру, тобто якщо у тексті є заборонене слово то видаляє його по всьому рядку
-
-// Arguments:
-// advertisement - текст(рекламний текст) для перевірки
-// forbiddenWord - заборонене слово
-// Return value
-// Якщо заборонене слово не знайдено - рядок без змін. Якщо заборонене слово присутнє в тексті - оновлений рядок без цього слова.
-
-// TASK-02
-// Доповнити функціонал з минулої задачі. До функції profileMagazie, яка повертає обʼєкт інтернет-магазину з додатковими методами по роботі з ним додати наступні параметри та методи.
-
-// Arguments:
-// startSaleDate - дата початку знижок
-// Return value
-// Обʼєкт інтернет магазину, у якого наявні одноіменні аргументам властивості, а також 4 методи - makeBlackFriday, verifySore, ellisisText, checkDaytoSale
-
-// метод checkDaytoSale
-// Вираховує скільки днів залишилось до початку розпродажу
-
-// Arguments:
-// startSaleDate - дата початку розпродажу у форматі(22.07.2022)
-// Return value
-// Кількість днів яка залишилась до початку розпродажу
-
-// TASK-03
-// Доповнити функціонал з минулої задачі. До функції profileMagazie, яка повертає обʼєкт інтернет-магазину з додатковими методами по роботі з ним додати наступні параметри та методи.
-
-// Arguments:
-// team - кількість працівників в магазині
-// Return value
-// Обʼєкт інтернет магазину, у якого наявні одноїменні аргументам властивості, а також 5 методи - makeBlackFriday, verifySore, ellisisText, checkDaytoSale, prepareInventory
-
-// метод prepareInventory
-// Вираховує чи встигає команда магазину підготувати товар до розпродажу за умови, що 1 працівник в день може підготовляти лише 10 одиниць товару.
-
-// Arguments:
-// немає
-
-// Return value
-// Значення - true, в разі що магазин встигає до розпродажу, та значення - false, якщо ні
+const data = { login: "gogi", password: "GloryOfUkraine", address: "Kiev" }
+console.log(without(data, "address")) // { login: 'gogi', password: 'GloryOfUkraine', address: null}

@@ -79,9 +79,8 @@ function countChar(startChar, finishChar) {
     console.error("Нечего считать.")
   } else {
     console.log("🏁 Отсчёт начат.")
-    while (startChar <= finishChar) {
+    for (let i = startChar; i <= finishChar; i++) {
       console.log(startChar)
-      startChar++
     }
     console.log("✅ Отсчёт завершен.")
   }
@@ -150,18 +149,15 @@ function sumOfParameters() {
     let value = 0
     for (let i in arguments) {
       if (!Number.isInteger(arguments[i])) {
-        console.log(`Аргумент ${arguments[i]} за індексом ${i} не ціле число`)
+        console.error(`Аргумент ${arguments[i]} за індексом ${i} не ціле число`)
         value = 0
         break
       } else {
         value += arguments[i]
       }
     }
-    if (value === 0) {
-    } else {
-      console.log(value)
-      return value
-    }
+    console.log(value)
+    return value
   }
 }
 
@@ -187,13 +183,6 @@ function sumOfParameters() {
 // }
 // let increment = makeIncrement()
 
-function counter() {
-  let count = 0
-  return function () {
-    return ++count
-  }
-}
-
 /**
  * Задание 8.
  *
@@ -213,26 +202,9 @@ function counter() {
  * - На техническом языке подробно объяснить механизм решения.
  */
 
-// while (confirm("Do you want to do something?")) {
-//   switch (prompt("1 for index; 2 for length; 3 for Hangman")) {
-//     case "1":
-//       indexMatch()
-//       break
-//     case "2":
-//       isLenghtOK()
-//       break
-//     case "3":
-//       lenghtCounter()
-//       break
-//     case "4":
-//       break
-//     case "5":
-//       break
-//     case "6":
-//       break
-//     case "7":
-//       break
-//     case "8":
-//       break
-//   }
-// }
+function counter() {
+  let count = 0
+  return function () {
+    return ++count
+  }
+}

@@ -10,8 +10,11 @@
  * якшо direction не переданий, то малювання відпувається по горизонталі.
  */
 
-function matrix() {
-  function createMatrix(size = 5, defaultValue = "R") {
+function matrix(size = 5, defaultValue = "R") {
+  let value = createMatrix(size, defaultValue)
+
+  function createMatrix(size, defaultValue) {
+    let value = []
     for (let i = 0; i < size; i++) {
       let row = []
       for (let i = 0; i < size; i++) {
@@ -19,6 +22,7 @@ function matrix() {
       }
       value.push(row)
     }
+    return value
   }
 
   function drawChar(x, y, char) {
@@ -38,8 +42,7 @@ function matrix() {
   }
 
   function reset() {
-    value.splice(0, value.length)
-    createMatrix()
+    value = createMatrix()
   }
 
   function drawCharSet(x, y, char, direction = "x") {
@@ -47,16 +50,12 @@ function matrix() {
       for (let i = 0; i < char.length && i + x < value.length; i++) {
         value[i + x][y] = char[i]
       }
-    } else {
+    } else if (direction === "x") {
       for (let i = 0; i < char.length && i + y < value.length; i++) {
         value[x][i + y] = char[i]
       }
     }
   }
-
-  let value = []
-
-  createMatrix()
 
   return {
     value,
@@ -70,6 +69,6 @@ function matrix() {
 
 const myMatrix = matrix()
 
-myMatrix.drawCharSet(2, 0, " хуй ")
+myMatrix.drawCharSet(2, 0, "хуй пізда")
 
 console.log(myMatrix.value)
