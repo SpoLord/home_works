@@ -1,26 +1,3 @@
-// function createMovie(title, schedule, ticketPrice) {
-//   const movie = {
-//     title: title,
-//     schedule: schedule,
-//     price: ticketPrice,
-
-//     /**
-//      *
-//      * @param {number} discount – biger then 0 and less then 1 for calculation new prices
-//      * @returns discounted price
-//      */
-//     makeSale: function (discount) {
-//       if (discount <= 0 || discount >= 1) {
-//         return null
-//       }
-//       this.price *= discount
-//     },
-//   }
-
-//   return movie
-// }
-// ------------- simplifyed ------------- //
-
 function createMovie(title, schedule, ticketPrice, seets = 32) {
   const moovie = {
     title: title,

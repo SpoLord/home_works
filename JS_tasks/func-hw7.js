@@ -8,8 +8,8 @@
 // Return value
 // true або false, залежно від того є буква в слові чи ні.
 
-function indexMatch(word, index, char) {
-  return word.indexOf(char) === index
+function indexMatch(word, i, char) {
+  return word[i] === char
 }
 
 //  TASK-02 done
