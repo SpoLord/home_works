@@ -178,4 +178,4 @@ function without(object, propertyName) {
 }
 
 const data = { login: "gogi", password: "GloryOfUkraine", address: "Kiev" }
-console.log(without(data, "address")) // { login: 'gogi', password: 'GloryOfUkraine', address: null}
+console.log(without(data, "address")) // { login: 'gogi', password: 'GloryToUkraine', address: null}

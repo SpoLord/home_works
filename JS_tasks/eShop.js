@@ -5,7 +5,7 @@
  * @param {number} amount - кількість продукту в магазині. Замовчування = 0
  * @returns об'єкт продукт з трьома параметрами
  */
-function createProduct(name, price, amount) {
+function createProduct(name, price, amount = 0) {
   return {
     name,
     price,
@@ -42,11 +42,13 @@ const makeBlackFriday = function (discount) {
  */
 const verifyStore = function (store, shopStore) {
   const notMatchStore = []
+  debugger
   for (j of store) {
     for (i of shopStore) {
       if (j.name === i.name) {
         i.amount = j.amount
         notMatchStore.push(j.name)
+        //дописати перевірку на кільтоварів на складах, додати перевірку на відсутрій товар
       }
     }
   }
@@ -67,6 +69,7 @@ const verifyStore = function (store, shopStore) {
 const ellipsisText = function (text, maxLength) {}
 
 /**
+ * який саме рядок воно мусить перевіряти?
  * Перевіряє рядок(рекламу магазину) на цензуру, тобто якщо у тексті є заборонене слово то видаляє його по всьому рядку
  *
  * @param {string} advertisement - текст(рекламний текст) для перевірки
@@ -105,7 +108,8 @@ const createShop = function (label, schedule, shopStore, description) {
 }
 
 // TASK-05
-// Доповнити функціонал з минулої задачі. До функції profileMagazie, яка повертає обʼєкт інтернет-магазину з додатковими методами по роботі з ним додати наступні параметри та методи.
+// Доповнити функціонал з минулої задачі.
+// До функції profileMagazie, яка повертає обʼєкт інтернет-магазину з додатковими методами по роботі з ним додати наступні параметри та методи.
 
 // Arguments:
 // startSaleDate - дата початку знижок
@@ -148,7 +152,7 @@ const shopStore = [
 const store = [
   createProduct("butter", 15, 2),
   createProduct("chiken", 30, 2),
-  createProduct("ketchup", 25, 58),
+  createProduct("ketchup", 25, 5),
 ]
 
 const shop = createShop(
@@ -162,10 +166,10 @@ console.log(shop.shopStore[2].price)
 console.log(shop.makeBlackFriday(0.8))
 console.log(shop.verifyStore(store, shopStore))
 
-const date = new Date("2023", "7", "20")
-const date2 = new Date()
-const MILISEC_PERDAY = 86400000
+// const date = new Date("2023", "7", "20")
+// const date2 = new Date()
+// const MILISEC_PERDAY = 86400000
 
-console.log(date)
-console.log(date2)
-console.log(Math.ceil((date.getTime() - date2.getTime()) / MILISEC_PERDAY))
+// console.log(date)
+// console.log(date2)
+// console.log(Math.ceil((date.getTime() - date2.getTime()) / MILISEC_PERDAY))
